@@ -1,71 +1,83 @@
 package com.anthony.mario.Scenes;
 
-import com.anthony.mario.AntGame;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-
 import com.badlogic.gdx.utils.Disposable;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
+
+import java.util.Locale;
 
 
 public class Hud implements Disposable {
 
-  public Stage stage;
-  private Viewport viewport;
-  private SpriteBatch sb;
+    public Stage stage;
+    private SpriteBatch sb;
 
-  int score;
-  int worldTime;
-  int timeCount;
-  Label marioLabel;
-  Label scoreLabel;
-  Label worldLabel;
-  Label levelLabel;
-  Label timeLabel;
-  Label timeCountLabel;
+    private int score;
+    private int worldTime;
+    private float timeCount;
 
-  public Hud(SpriteBatch sb) {
-    this.sb = sb;
-    timeCount = 0;
-    worldTime = 300;
-    score = 0;
+    private Label scoreLabel;
+    private Label timeCountLabel;
 
-    viewport = new StretchViewport(AntGame.V_WITH, AntGame.V_HEIGHT, new OrthographicCamera());
-    stage = new Stage();
+    public Hud(SpriteBatch sb) {
 
-    Table table = new Table();
-    table.top();
-    table.setFillParent(true);
+        Label marioLabel;
+        Label worldLabel;
+        Label levelLabel;
+        Label timeLabel;
 
-    marioLabel = new Label("MARIO", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-    scoreLabel = new Label(String.format("%06d", score),
-        new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-    worldLabel = new Label("WORLD", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-    levelLabel = new Label("0-0", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-    timeLabel = new Label("TIME", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-    timeCountLabel = new Label(String.format("%03d", timeCount),
-        new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        this.sb = sb;
+        timeCount = 0;
+        worldTime = 300;
+        score = 0;
 
-    table.add(marioLabel).expandX().padTop(10);
-    table.add(worldLabel).expandX().padTop(10);
-    table.add(timeLabel).expandX().padTop(10);
-    table.row();
-    table.add(scoreLabel).expandX().padTop(10);
-    table.add(levelLabel).expandX().padTop(10);
-    table.add(timeCountLabel).expandX().padTop(10);
+        stage = new Stage();
 
-    stage.addActor(table);
-  }
+        Table table = new Table();
+        table.top();
+        table.setFillParent(true);
 
-  @Override
-  public void dispose() {
-    stage.dispose();
-    sb.dispose();
-  }
+        marioLabel = new Label("MARIO", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        scoreLabel = new Label(String.format(Locale.ROOT, "%06d", score),
+                new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        worldLabel = new Label("WORLD", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        levelLabel = new Label("0-0", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        timeLabel = new Label("TIME", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        timeCountLabel = new Label(String.format(Locale.ROOT, "%03d", worldTime),
+                new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+
+        table.add(marioLabel).expandX().padTop(10);
+        table.add(worldLabel).expandX().padTop(10);
+        table.add(timeLabel).expandX().padTop(10);
+        table.row();
+        table.add(scoreLabel).expandX().padTop(10);
+        table.add(levelLabel).expandX().padTop(10);
+        table.add(timeCountLabel).expandX().padTop(10);
+
+        stage.addActor(table);
+    }
+
+    @Override
+    public void dispose() {
+        stage.dispose();
+        sb.dispose();
+    }
+
+
+    void addScore(int x) {
+        score += x;
+        scoreLabel.setText(String.format(Locale.ROOT, "%06d", score));
+    }
+
+    public void update(float dt) {
+        timeCount += dt;
+        if (timeCount >= 1) {
+            timeCount = 0;
+            timeCountLabel.setText(String.format(Locale.ROOT, "%03d", --worldTime));
+        }
+    }
 }

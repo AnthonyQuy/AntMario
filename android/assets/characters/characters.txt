@@ -1,0 +1,54 @@
+characters.png
+size: 227, 56
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+BigMario
+  rotate: false
+  xy: 97, 24
+  size: 130, 32
+  orig: 130, 32
+  offset: 0, 0
+  index: -1
+Biter
+  rotate: false
+  xy: 48, 0
+  size: 38, 23
+  orig: 38, 23
+  offset: 0, 0
+  index: -1
+Fireball
+  rotate: false
+  xy: 16, 0
+  size: 32, 8
+  orig: 32, 8
+  offset: 0, 0
+  index: -1
+LittleMario
+  rotate: false
+  xy: 0, 24
+  size: 97, 16
+  orig: 97, 16
+  offset: 0, 0
+  index: -1
+Mushroom
+  rotate: false
+  xy: 0, 0
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+Goomba
+  rotate: false
+  xy: 86, 0
+  size: 57, 16
+  orig: 57, 16
+  offset: 0, 0
+  index: -1
+Turtle
+  rotate: false
+  xy: 143, 0
+  size: 76, 24
+  orig: 76, 24
+  offset: 0, 0
+  index: -1
