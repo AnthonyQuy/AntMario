@@ -6,15 +6,16 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Fixture;
 
 public class Brick extends InteractiveObject {
-    public Brick(Fixture fixture, Rectangle rectangle) {
-        super(fixture, rectangle);
-    }
 
-    @Override
-    public void onHeadHit() {
+  public Brick(Fixture fixture, Rectangle rectangle) {
+    super(fixture, rectangle);
+  }
+
+  @Override
+  public void onHeadHit() {
 //        Gdx.app.log("Brick", "Head hit");
-        setMaskBits((short) 0);
-        MarioMap.removeGraphicCell(rectangle);
-        Assets.getBreackBlockSound().play();
-    }
+    setMaskBits((short) 0);
+    MarioMap.removeGraphicCell(rectangle);
+    Assets.getBreackBlockSound().play();
+  }
 }

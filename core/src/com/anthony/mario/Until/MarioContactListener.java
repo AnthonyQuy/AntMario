@@ -2,6 +2,7 @@ package com.anthony.mario.Until;
 
 import com.anthony.mario.AntGame;
 import com.anthony.mario.GameCharacter.Goomba;
+import com.anthony.mario.GameCharacter.Mario;
 import com.anthony.mario.GameObject.InteractiveObject;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
@@ -27,23 +28,14 @@ public class MarioContactListener implements ContactListener {
         } else if ((AntGame.ENEMYHEAD_FILTER & f) != 0) {
             object = A.getFilterData().categoryBits == AntGame.ENEMYHEAD_FILTER ? A : B;
             ((Goomba) object.getUserData()).onMarioStep();
+        } else if ((AntGame.ENEMY_FILTER & f) != 0) {
+            object = A.getFilterData().categoryBits == AntGame.ENEMY_FILTER ? A : B;
+            ((Goomba) object.getUserData()).reverseVelocity();
+        } else if (f == (AntGame.MARIO_FILTER | AntGame.ENEMY_FILTER)) {
+            object = A.getFilterData().categoryBits == AntGame.MARIO_FILTER ? A : B;
+            ((Mario) object.getUserData()).onDead();
         }
-//
-//        switch (f){
-//            case (AntGame.MARIOHEAD_FILTER & (short) f) != 0:
-//                break;
-//
-//        }
-//
-//        if (A.getUserData() == DATA_MARIOHEAD || B.getUserData() == DATA_MARIOHEAD) {
-//
-//        } else if (A.getUserData() instanceof Goomba || B.getUserData() instanceof Goomba) {
-//            Fixture goomba = A.getUserData() instanceof Goomba ? A : B;
-//            Fixture object = A == goomba ? B : A;
-//            if(object.getUserData() instanceof Mario){
-//                ((Goomba) goomba.getUserData()).onMarioStep();
-//            }
-//        }
+
     }
 
     @Override
