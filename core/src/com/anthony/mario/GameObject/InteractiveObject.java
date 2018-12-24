@@ -1,18 +1,18 @@
 package com.anthony.mario.GameObject;
 
 import com.anthony.mario.AntGame;
-import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.Fixture;
 
 public abstract class InteractiveObject {
 
-  Rectangle rectangle;
+  Cell cell;
   private Fixture fixture;
 
-  InteractiveObject(Fixture fixture, Rectangle rectangle) {
+  InteractiveObject(Fixture fixture, Cell cell) {
     this.fixture = fixture;
-    this.rectangle = rectangle;
+    this.cell = cell;
     Filter filter = new Filter();
     filter.categoryBits = AntGame.INTERACTIVEOBJECT_FILTER;
     fixture.setFilterData(filter);

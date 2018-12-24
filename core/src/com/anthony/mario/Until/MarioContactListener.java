@@ -25,7 +25,7 @@ public class MarioContactListener implements ContactListener {
             if (object.getUserData() instanceof InteractiveObject) {
                 ((InteractiveObject) object.getUserData()).onHeadHit();
             }
-        } else if ((AntGame.ENEMYHEAD_FILTER & f) != 0) {
+        } else if ((AntGame.ENEMYHEAD_FILTER | AntGame.MARIO_FILTER) == f) {
             object = A.getFilterData().categoryBits == AntGame.ENEMYHEAD_FILTER ? A : B;
             ((Goomba) object.getUserData()).onMarioStep();
         } else if ((AntGame.ENEMY_FILTER & f) != 0) {

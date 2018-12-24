@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="125">
+<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="145">
  <tileset firstgid="1" source="NES - Super Mario Bros - Tileset.tsx"/>
  <layer id="1" name="background" width="240" height="13">
   <data encoding="base64" compression="zlib">
@@ -115,5 +115,20 @@
   <object id="76" x="2864" y="160" width="32" height="32"/>
   <object id="78" x="3152" y="160" width="32" height="32"/>
   <object id="79" x="3808" y="160" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup id="7" name="goombas">
+  <object id="128" x="416" y="176" width="16" height="16"/>
+  <object id="129" x="560" y="176" width="16" height="16"/>
+  <object id="132" x="608" y="176" width="16" height="16"/>
+  <object id="133" x="704" y="176" width="16" height="16"/>
+  <object id="134" x="1216" y="176" width="16" height="16"/>
+  <object id="135" x="1232" y="176" width="16" height="16"/>
+  <object id="137" x="1248" y="176" width="16" height="16"/>
+  <object id="138" x="1648" y="176" width="16" height="16"/>
+  <object id="139" x="1888" y="176" width="16" height="16"/>
+  <object id="140" x="2256" y="176" width="16" height="16"/>
+  <object id="141" x="2272" y="176" width="16" height="16"/>
+  <object id="143" x="3104" y="176" width="16" height="16"/>
+  <object id="144" x="-16" y="-64"/>
  </objectgroup>
 </map>

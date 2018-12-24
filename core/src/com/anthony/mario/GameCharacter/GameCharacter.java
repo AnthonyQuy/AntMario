@@ -12,16 +12,16 @@ public abstract class GameCharacter extends Sprite {
   World world;
 
 
-  GameCharacter(World world, SpriteBatch sb) {
+  GameCharacter(World world, SpriteBatch sb, float x, float y) {
     this.sb = sb;
     this.world = world;
-    initBody();
+    initBody(x, y);
     initAsset();
   }
 
   protected abstract void initAsset();
 
-  protected abstract void initBody();
+  protected abstract void initBody(float x, float y);
 
   public Body getBody() {
     return body;

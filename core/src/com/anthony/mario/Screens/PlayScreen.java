@@ -1,7 +1,6 @@
 package com.anthony.mario.Screens;
 
 import com.anthony.mario.AntGame;
-import com.anthony.mario.GameCharacter.Goomba;
 import com.anthony.mario.GameCharacter.Mario;
 import com.anthony.mario.Scenes.Hud;
 import com.anthony.mario.Scenes.HudManager;
@@ -37,14 +36,13 @@ public class PlayScreen extends HudManager implements Screen {
 
   private Box2DDebugRenderer debugRenderer;
   private World world;
-
+  private MarioMap marioMap;
   private Mario mario;
-
-  private Goomba goomba;
-
 
   public PlayScreen(AntGame game) {
     this.game = game;
+    Assets.load();
+
     cam = new OrthographicCamera();
     viewport = new FitViewport(AntGame.V_WITH, AntGame.V_HEIGHT, cam);
     cam.position.set(viewport.getWorldWidth() / 2f, viewport.getWorldHeight() / 2f, 0);
@@ -56,13 +54,8 @@ public class PlayScreen extends HudManager implements Screen {
 
     TiledMap map = new TmxMapLoader().load("mario1.tmx");
     mapRenderer = new OrthogonalTiledMapRenderer(map, 1 / AntGame.W_SCALE);
-
-    new MarioMap(world, map);
-
-    Assets.load();
+    marioMap = new MarioMap(world, map, this.game.batch);
     mario = new Mario(this.world, this.game.batch);
-
-    goomba = new Goomba(this.world, this.game.batch);
 
     world.setContactListener(new MarioContactListener());
 
@@ -94,8 +87,8 @@ public class PlayScreen extends HudManager implements Screen {
   }
 
   private void update(float dt) {
+    marioMap.update(dt);
     mario.update(dt);
-    goomba.update(dt);
     hud.update(dt);
     handleInput();
   }
@@ -148,6 +141,7 @@ public class PlayScreen extends HudManager implements Screen {
     debugRenderer.dispose();
     world.dispose();
     hud.dispose();
+    marioMap.dispose();
     Assets.dispose();
   }
 }

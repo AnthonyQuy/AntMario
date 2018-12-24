@@ -25,28 +25,26 @@ public class Goomba extends GameCharacter {
   private boolean isDestroying = false;
   private boolean destroyed = false;
 
-  public Goomba(World world, SpriteBatch sb) {
-    super(world, sb);
+  public Goomba(World world, SpriteBatch sb, float xPos, float yPos) {
+    super(world, sb, xPos, yPos);
+
   }
 
   @Override
   protected void initAsset() {
     TextureRegion region = Assets.getGoombaRegion();
-
     dying = new TextureRegion(region, 0, 0, 17, 16);
-
     Array<TextureRegion> frames = new Array<TextureRegion>();
     frames.add(new TextureRegion(region, 19, 0, 17, 16));
     frames.add(new TextureRegion(region, 38, 0, 17, 16));
     moving = new Animation<TextureRegion>(0.4f, frames, Animation.PlayMode.LOOP);
   }
 
-  @Override
-  protected void initBody() {
+  protected void initBody(float xPos, float yPos) {
     BodyDef bodyDef = new BodyDef();
     bodyDef.type = BodyDef.BodyType.DynamicBody;
-    bodyDef.position.set(4, 10f / AntGame.W_SCALE);
-    bodyDef.linearVelocity.x = -1;
+    bodyDef.position.set(xPos, yPos);
+    bodyDef.linearVelocity.x = 0;
     bodyDef.gravityScale = 0;
     body = world.createBody(bodyDef);
     PolygonShape bShape = new PolygonShape();

@@ -28,7 +28,7 @@ public class Mario extends GameCharacter {
   private Fixture head;
 
   public Mario(World world, SpriteBatch batch) {
-    super(world, batch);
+    super(world, batch, 1, 1);
   }
 
   @Override
@@ -50,10 +50,10 @@ public class Mario extends GameCharacter {
   }
 
   @Override
-  protected void initBody() {
+  protected void initBody(float xPos, float yPos) {
     BodyDef bodyDef = new BodyDef();
     bodyDef.type = BodyDef.BodyType.DynamicBody;
-    bodyDef.position.set(1, 1);
+    bodyDef.position.set(xPos, yPos);
     body = world.createBody(bodyDef);
     Shape shape = new CircleShape();
     shape.setRadius(7f / AntGame.W_SCALE);
